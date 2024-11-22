@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: shortpingoo-apigateway-sa
+  namespace: shortpingoo
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: shortpingoo
+  name: shortpingoo-apigateway-role
+rules:
+- apiGroups: [""]
+  resources: ["services"]
+  verbs: ["get", "list", "watch", "describe"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: shortpingoo-apigateway-rolebinding
+  namespace: shortpingoo
+subjects:
+- kind: ServiceAccount
+  name: shortpingoo-apigateway-sa
+  namespace: shortpingoo
+roleRef:
+  kind: Role
+  name: shortpingoo-apigateway-role
+  apiGroup: rbac.authorization.k8s.io
