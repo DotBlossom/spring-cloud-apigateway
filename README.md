@@ -1,2 +1,1 @@
-# spring-cloud-apigateway
-dd
+serviceAccountName: shortpingoo-apigateway-sa
